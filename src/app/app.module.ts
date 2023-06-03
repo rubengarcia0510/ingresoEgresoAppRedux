@@ -10,6 +10,8 @@ import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.c
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,12 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     EstadisticaComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    DetalleComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
