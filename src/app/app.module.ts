@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
 import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     DashboardComponent,
     IngresoEgresoComponent,
     EstadisticaComponent,
-    FooterComponent
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule
