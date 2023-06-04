@@ -14,7 +14,7 @@
                           placeholder="Nombre">
                   <div class="input-group-append">
                     <span class="input-group-text">
-                      <i class="fa fa-check-circle"></i>
+                      <i class="fa fa-check-circle" *ngIf="registroForm.get('nombre')?.valid"></i>
                     </span>
                   </div>
                 </div>
@@ -27,7 +27,7 @@
                           placeholder="Correo">
                   <div class="input-group-append">
                     <span class="input-group-text">
-                      <i class="fa fa-check-circle"></i>
+                      <i class="fa fa-check-circle" *ngIf="registroForm.get('email')?.valid"></i>
                     </span>
                   </div>
                 </div>
@@ -40,14 +40,16 @@
                          placeholder="Password">
                   <div class="input-group-append">
                     <span class="input-group-text">
-                      <i class="fa fa-check-circle"></i>
+                      <i class="fa fa-check-circle" *ngIf="registroForm.get('password')?.valid"></i>
                     </span>
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <button type="submit"  class="btn btn-primary submit-btn btn-block">Crear cuenta</button>
+                <button type="submit"  
+                    [disabled]="registroForm.invalid"
+                    class="btn btn-primary submit-btn btn-block">Crear cuenta</button>
               </div>
               <div class="text-block text-center my-3">
                 <span class="text-small font-weight-semibold">ya tienes una cuenta?</span>
