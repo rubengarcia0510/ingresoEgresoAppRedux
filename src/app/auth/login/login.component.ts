@@ -33,14 +33,21 @@ export class LoginComponent implements OnInit{
   }
 
   loginUsuario(){
-    console.log(this.loginForm)
-    console.log(this.loginForm.valid)
+
     if(this.loginForm.invalid) return;
+
+    Swal.fire({
+      title: 'Logeando usuario...',
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    })
 
     const {email,password} = this.loginForm.value;
     this.authService.loginUsuario(email,password)
       .then(credenciales=>{
         console.log(credenciales)
+        Swal.close();
         this.route.navigate(['/']);
       })
       .catch(err => {

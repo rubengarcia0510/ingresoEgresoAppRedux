@@ -35,14 +35,21 @@ export class RegisterComponent implements OnInit{
   }
 
   crearUsuario(){
-    console.log(this.registroForm)
-    console.log(this.registroForm.valid)
+
     if(this.registroForm.invalid) return;
+
+    Swal.fire({
+      title: 'Auto close alert!',
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    })
 
     const {nombre,email,password} = this.registroForm.value;
     this.authService.crearUsuario(nombre,email,password)
       .then(credenciales=>{
         console.log(credenciales)
+        Swal.close();
         this.route.navigate(['/']);
       })
       .catch(err => {
