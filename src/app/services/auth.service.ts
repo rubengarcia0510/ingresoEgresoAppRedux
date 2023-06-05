@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Auth, User, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,7 @@ export class AuthService implements OnDestroy{
 
   ngOnDestroy(): void {
     this.authStateSubscription.unsubscribe();
+    
   }
 
   crearUsuario(nombre:string,email:string,password:string){
@@ -46,5 +47,12 @@ export class AuthService implements OnDestroy{
         //handle auth state changes here. Note, that user will be null if there is no currently logged in user.
      console.log(aUser);
     })
+  }
+
+  isAuth(){
+    
+    return this.authState$.pipe(
+      map( user => user != null)
+    )
   }
 }
