@@ -1,14 +1,27 @@
-import { Injectable, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Injectable, OnDestroy, inject } from '@angular/core';
+import { Auth, User, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnDestroy{
 
   private auth: Auth = inject(Auth);
+  authState$ = authState(this.auth);
+  authStateSubscription: Subscription;
 
-  constructor() { }
+  constructor() { 
+    this.authStateSubscription = this.authState$.subscribe((aUser: User | null) => {
+      //handle auth state changes here. Note, that user will be null if there is no currently logged in user.
+   console.log(aUser?.uid);
+   console.log(aUser?.email);
+  })
+  }
+
+  ngOnDestroy(): void {
+    this.authStateSubscription.unsubscribe();
+  }
 
   crearUsuario(nombre:string,email:string,password:string){
     console.log({nombre,email,password})
@@ -26,5 +39,12 @@ export class AuthService {
 
   logouUsusario(){
     return this.auth.signOut();
+  }
+
+  listenerUserState(){
+    this.authStateSubscription = this.authState$.subscribe((aUser: User | null) => {
+        //handle auth state changes here. Note, that user will be null if there is no currently logged in user.
+     console.log(aUser);
+    })
   }
 }
