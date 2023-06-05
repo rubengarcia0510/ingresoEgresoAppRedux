@@ -23,4 +23,8 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth,email,password); 
 
   }
+
+  logouUsusario(){
+    return this.auth.signOut();
+  }
 }
