@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit{
     if(this.registroForm.invalid) return;
 
     Swal.fire({
-      title: 'Auto close alert!',
+      title: 'Creando usuario',
       didOpen: () => {
         Swal.showLoading()
       }
