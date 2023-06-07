@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -6,16 +6,18 @@ import { AppState } from 'src/app/app.reducers';
 import { AuthService } from 'src/app/services/auth.service';
 import * as ui from '../../shared/ui.actions';
 import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit, OnDestroy{
 
   loginForm: FormGroup;
   cargando:boolean=false;
+  uiSubscription: Subscription | undefined;
 
   constructor(private fb:FormBuilder,
               private authService:AuthService,
@@ -28,6 +30,10 @@ export class LoginComponent implements OnInit{
 
   }
 
+  ngOnDestroy(): void {
+    this.uiSubscription?.unsubscribe();
+  }
+
   ngOnInit(): void {
 
     this.loginForm = this.fb.group({
@@ -35,7 +41,7 @@ export class LoginComponent implements OnInit{
       password: ['', Validators.required],
     })
 
-    this.store.select('ui')
+    this.uiSubscription = this.store.select('ui')
       .subscribe(ui => {
         this.cargando = ui.isLoading
         console.log("cargando subs...")
