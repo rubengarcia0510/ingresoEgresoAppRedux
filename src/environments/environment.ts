@@ -9,4 +9,5 @@ export const environment = {
     authDomain: 'fir-crm-dfc7b.firebaseapp.com',
     messagingSenderId: '976429384665',
   },
+  production: false
 };
