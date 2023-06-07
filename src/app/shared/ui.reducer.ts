@@ -9,8 +9,8 @@ export const initialState: State = {
    isLoading: false,
 }
 
-const _counterReducer = createReducer(initialState,
-
+const _counterReducer = createReducer(
+    initialState,
     on(isLoading, state => ({ ...state, isLoading: true})),
     on(stopLoading, state => ({ ...state, isLoading: false})),
 
