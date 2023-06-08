@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit, OnDestroy{
       .subscribe(ui => {
         this.cargando = ui.isLoading
         console.log("cargando subs...")
+        console.log(this.cargando)
       });
     
   }
