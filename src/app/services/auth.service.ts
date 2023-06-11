@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Auth, User, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { CollectionReference, DocumentReference, Firestore, addDoc, collection, collectionData, doc, getDoc, getFirestore, setDoc,  } from '@angular/fire/firestore';
+import { CollectionReference, DocumentReference, Firestore, addDoc, collection, collectionData, doc, documentId, getDoc, getFirestore, setDoc,  } from '@angular/fire/firestore';
 import { Observable, Subscription, map } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
 import { Store } from '@ngrx/store';
@@ -44,12 +44,14 @@ export class AuthService implements OnDestroy{
   addUserProfile(uid:string,nombre:string,email:string) {
     if (!nombre) return;
 
-    let nuevaColl=collection(this.firestore,uid)
-    
-    addDoc(nuevaColl, <Usuario> { uid,nombre,email }).then((documentReference: DocumentReference) => {
-        // the documentReference provides access to the newly created document
-        console.log(documentReference)
-    });
+    let nuevo = {
+      uid:uid,
+      nombre:nombre,
+      email:email
+    }
+
+    const docRef = doc(this.firestore, uid,"usuario")
+    setDoc(docRef, nuevo)
 }
 
   crearUsuario(nombre:string,email:string,password:string){
@@ -78,6 +80,9 @@ export class AuthService implements OnDestroy{
         //handle auth state changes here. Note, that user will be null if there is no currently logged in user.
      console.log("usuario :::: "+aUser);
      let userProfileCollection:any='users';
+
+     
+
      if(aUser){
       userProfileCollection = collection(this.firestore, aUser?.uid);
      }
@@ -87,6 +92,7 @@ export class AuthService implements OnDestroy{
      let aux = collectionData(userProfileCollection) as Observable<Usuario[]>;
  
 
+     
      if(aUser){
       console.log("UID : "+aUser.uid)
       console.log("Nombre : "+aUser.email)
