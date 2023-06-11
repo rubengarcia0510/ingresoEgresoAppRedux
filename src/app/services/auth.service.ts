@@ -17,6 +17,7 @@ export class AuthService implements OnDestroy{
   authStateSubscription: Subscription = new Subscription();
   userFirestore: Subscription = new Subscription; 
   setuser:boolean = false
+  _uid:string=''
 
   private firestore: Firestore = inject(Firestore);
   users$: Observable<Usuario[]> | undefined ;
@@ -85,6 +86,7 @@ export class AuthService implements OnDestroy{
 
      if(aUser){
       userProfileCollection = collection(this.firestore, aUser?.uid);
+      
      }
      
 
@@ -96,6 +98,7 @@ export class AuthService implements OnDestroy{
      if(aUser){
       console.log("UID : "+aUser.uid)
       console.log("Nombre : "+aUser.email)
+      this._uid=aUser.uid
       this.userFirestore =
       aux.subscribe(data=>{
         console.log("aux : "+data[0])
@@ -107,6 +110,7 @@ export class AuthService implements OnDestroy{
       console.log("unset user")
       this.store.dispatch(action.unSetUser())
       this.userFirestore.unsubscribe()
+      this._uid=''
       
       
 
@@ -120,5 +124,9 @@ export class AuthService implements OnDestroy{
     return this.authState$.pipe(
       map( user => user != null)
     )
+  }
+
+  get uid(){
+    return this._uid
   }
 }
