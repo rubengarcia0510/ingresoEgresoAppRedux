@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, doc, setDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, doc, setDoc } from '@angular/fire/firestore';
 import { IngresoEgreso } from '../models/ingreso-egreso.model';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,13 @@ export class IngresoEgresoService {
         
         
 
+  }
+
+  ingresoEgresoListener(uid:string){
+    let collectionUser = collection(this.firestore,uid+'/ingreso-egreso/items')
+    let docsIngresoEgreso = collectionData(collectionUser) as Observable<IngresoEgreso[]>;
+    docsIngresoEgreso.subscribe(items=>{
+      console.log(items)
+    })
   }
 }
