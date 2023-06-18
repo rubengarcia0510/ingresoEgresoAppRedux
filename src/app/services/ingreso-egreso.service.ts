@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, doc, setDoc } from '@angular/fire/firestore';
+import { Firestore, QueryDocumentSnapshot, QuerySnapshot, addDoc, collection, collectionChanges, collectionData, collectionSnapshots, doc, docData, setDoc } from '@angular/fire/firestore';
 import { IngresoEgreso } from '../models/ingreso-egreso.model';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,11 +34,21 @@ export class IngresoEgresoService {
 
   }
 
-  ingresoEgresoListener(uid:string){
+  ingresoEgresoListener(uid:string|undefined){
+    
     let collectionUser = collection(this.firestore,uid+'/ingreso-egreso/items')
-    let docsIngresoEgreso = collectionData(collectionUser) as Observable<IngresoEgreso[]>;
-    docsIngresoEgreso.subscribe(items=>{
-      console.log(items)
-    })
+    return collectionSnapshots(collectionUser)
+        .pipe(
+          map(datos=>
+            datos.map(item=>(
+              {
+                uid:item.id,
+                monto:item.get('monto'),
+                descripcion:item.get('descripcion'),
+                tipo:item.get('tipo')
+              }
+            )))
+        )
+
   }
 }
