@@ -31,7 +31,6 @@ export class DetalleComponent implements OnInit, OnDestroy{
   }
 
   borrar(arg0: string|undefined) {
-    console.log(arg0)
     this.itemsService.borrarItem(arg0)
           .then(resp=>Swal.fire('Borrado','Item borrado','success'))
           .catch(err=>Swal.fire('Borrado',err.message(),'error'))

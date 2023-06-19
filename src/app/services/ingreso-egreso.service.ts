@@ -19,11 +19,6 @@ export class IngresoEgresoService {
       private store:Store<AppState>) { }
 
   save(ingresoEgreso:IngresoEgreso){
-
-      console.log("datos en el servicio de ingreso egreso : "+ingresoEgreso.descripcion)
-
-
-        console.log("authservice : "+this.authService.uid)
         let uid = this.authService.uid
         
         let data = {
@@ -62,8 +57,6 @@ export class IngresoEgresoService {
     this.store.select('auth')
     .subscribe(
       dato=>this.coll=dato.user?.uid)
-
-    console.log(this.coll)
 
     let docRef = doc(this.firestore,this.coll+'/ingreso-egreso/items/'+uid)
     return deleteDoc(docRef)
