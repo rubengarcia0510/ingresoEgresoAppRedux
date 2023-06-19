@@ -6,6 +6,7 @@ import { Usuario } from '../models/usuario.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducers';
 import * as action from '../auth/auth.actions';
+import { unsetItems } from '../ingreso-egreso/ingreso-egreso.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -109,6 +110,7 @@ export class AuthService implements OnDestroy{
      }else{
       console.log("unset user")
       this.store.dispatch(action.unSetUser())
+      this.store.dispatch(unsetItems())
       this.userFirestore.unsubscribe()
       this._uid=''
       
