@@ -14,7 +14,7 @@
                 </tr>
               </thead>
 
-              <tbody *ngFor="let item of ingEgArray">
+              <tbody *ngFor="let item of ingEgArray | ingresoEgreso">
                 <tr >
                   <td>{{item.descripcion}}</td>
                   <td>{{item.monto}}</td>
