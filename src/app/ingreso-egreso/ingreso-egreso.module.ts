@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
+import { DashboardRoutingModule } from '../dashboard/dashboard-routing.module';
 
 
 
@@ -25,7 +26,8 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule,
     ReactiveFormsModule,
     NgChartsModule,
-    SharedModule
+    SharedModule,
+    DashboardRoutingModule
   ]
 })
 export class IngresoEgresoModule { }
