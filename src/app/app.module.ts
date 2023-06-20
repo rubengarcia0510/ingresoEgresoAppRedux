@@ -25,6 +25,7 @@ import { environment } from 'src/environments/environment';
 import { IngresoEgresoPipe } from './pipes/ingreso-egreso.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -35,15 +36,16 @@ import { AuthModule } from './auth/auth.module';
     DashboardComponent,
     IngresoEgresoComponent,
     EstadisticaComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
+    //FooterComponent,
+    //NavbarComponent,
+    //SidebarComponent,
     DetalleComponent,
     IngresoEgresoPipe
   ],
   imports: [
     BrowserModule,
     AuthModule,
+    SharedModule,
     ReactiveFormsModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
