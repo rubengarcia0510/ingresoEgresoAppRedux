@@ -47,7 +47,7 @@ import { IngresoEgresoModule } from './ingreso-egreso/ingreso-egreso.module';
     BrowserModule,
     AuthModule,
     //SharedModule,
-    IngresoEgresoModule,
+    //IngresoEgresoModule,
     //ReactiveFormsModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
