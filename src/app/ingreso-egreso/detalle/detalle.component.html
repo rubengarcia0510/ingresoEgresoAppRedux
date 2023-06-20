@@ -14,12 +14,23 @@
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td>Descripción</td>
-                  <td>Monto</td>
-                  <td>Tipo</td>
-                  <td>acciones</td>
+              <tbody *ngFor="let item of ingEgArray | ingresoEgreso">
+                <tr >
+                  <td>{{item.descripcion}}</td>
+                  <td>{{item.monto}}</td>
+                  <td 
+                    [class.text-danger]="item.tipo=='egreso'"
+                    [class.text-success]="item.tipo=='ingreso'"
+                    >{{item.tipo}}</td>
+                  <td>
+                    <button 
+                        class="btn btn-danger"
+                        (click)="borrar(item.uid)"
+                        >
+                      <i class="fa fa-trash"></i>
+                        Borrar
+                    </button>
+                  </td>
                 </tr>
               </tbody>
 

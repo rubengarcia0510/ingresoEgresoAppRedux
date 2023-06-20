@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidebarComponent {
 
-
+  @Input() usuario:string | undefined
 
   constructor(private authService:AuthService,
               private route:Router){
