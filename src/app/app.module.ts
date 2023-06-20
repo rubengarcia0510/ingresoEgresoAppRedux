@@ -26,6 +26,7 @@ import { IngresoEgresoPipe } from './pipes/ingreso-egreso.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { IngresoEgresoModule } from './ingreso-egreso/ingreso-egreso.module';
 
 
 @NgModule({
@@ -33,27 +34,28 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     //LoginComponent,
     //RegisterComponent,
-    DashboardComponent,
-    IngresoEgresoComponent,
-    EstadisticaComponent,
+    //DashboardComponent,
+    //IngresoEgresoComponent,
+    //EstadisticaComponent,
     //FooterComponent,
     //NavbarComponent,
     //SidebarComponent,
-    DetalleComponent,
-    IngresoEgresoPipe
+    //DetalleComponent,
+    //IngresoEgresoPipe
   ],
   imports: [
     BrowserModule,
     AuthModule,
-    SharedModule,
-    ReactiveFormsModule,
+    //SharedModule,
+    IngresoEgresoModule,
+    //ReactiveFormsModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    NgChartsModule
+    //NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
