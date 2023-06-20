@@ -6,11 +6,9 @@ import { Observable } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent {
 
   @Input() usuario:string | undefined
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+
 
 }
