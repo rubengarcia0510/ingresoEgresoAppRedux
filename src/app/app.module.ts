@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
+//import { LoginComponent } from './auth/login/login.component';
+//import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
 import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
@@ -24,32 +24,38 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { IngresoEgresoPipe } from './pipes/ingreso-egreso.pipe';
 import { NgChartsModule } from 'ng2-charts';
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
+import { IngresoEgresoModule } from './ingreso-egreso/ingreso-egreso.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    DashboardComponent,
-    IngresoEgresoComponent,
-    EstadisticaComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    DetalleComponent,
-    IngresoEgresoPipe
+    //LoginComponent,
+    //RegisterComponent,
+    //DashboardComponent,
+    //IngresoEgresoComponent,
+    //EstadisticaComponent,
+    //FooterComponent,
+    //NavbarComponent,
+    //SidebarComponent,
+    //DetalleComponent,
+    //IngresoEgresoPipe
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
+    AuthModule,
+    //SharedModule,
+    //IngresoEgresoModule,
+    //ReactiveFormsModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    NgChartsModule
+    //NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
