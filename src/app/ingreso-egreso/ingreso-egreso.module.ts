@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from '../dashboard/dashboard-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { ingresoEgresoReducer } from './ingreso-egreso.reducer';
 
 
 
@@ -27,7 +29,8 @@ import { DashboardRoutingModule } from '../dashboard/dashboard-routing.module';
     ReactiveFormsModule,
     NgChartsModule,
     SharedModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    StoreModule.forFeature('ie',ingresoEgresoReducer)
   ]
 })
 export class IngresoEgresoModule { }
