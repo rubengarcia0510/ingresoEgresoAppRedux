@@ -1,1 +1,16 @@
-{}
+{
+  "hosting": {
+    "public": "dist/ingreso-egreso-app-redux",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
